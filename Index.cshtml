@@ -1,0 +1,1150 @@
+﻿
+@{
+    ViewBag.Title = "Chart";
+}
+
+
+@*此样式表用于定义一些下划线图片，防空专网图的样式*@
+<link type="text/css" rel="stylesheet" href="~/Content/css.css" />
+<title>现代医院管理风险防控专网</title>
+
+@*<h2>主图</h2>*@
+<div class="box_1 side">
+    <div class="center">
+        <div class="logo"><img src="~/images/logo.png" width="585" height="56" /></div>
+        @*<div class="logo_r"><span>管理员</span></div>*@
+        <div class="logo_r"><img src="~/images/pic_06.jpg" width="40" height="40" />管理员</div>
+        <div class="clear"></div>
+        <div class="menu">
+            <div class="menu_1"><a href="#"><img src="~/images/menu_01.png" /></a></div>
+            <div class="menu_2"><a href="/Institution/AuthorityDirectory" target="_blank"><img src="~/images/menu_02.png" /> </a></div>
+            <div class="menu_3"><a href="/PracticePower/PracticePower" target="_blank"><img src="~/images/menu_03.png" /> </a></div>
+            <div class="menu_4"><a href="/Institution/AuthorityDirectory" target="_blank"><img src="~/images/menu_04.png" /> </a></div>
+            <div class="menu_5"><a href="/Supplier/CompanyInfo" target="_blank"><img src="~/images/menu_05.png" /> </a></div>
+            <div class="menu_6"><a href="/PositionPower/PositionPower?anchor=publicity" target="_blank"><img src="~/images/menu_06.png" /> </a></div>
+            <div class="menu_7"><a href="/PatientSatisfaction/Patient" target="_blank"><img src="~/images/menu_07.png" /> </a></div>
+            <div class="menu_8"><a href="#hangfeng"><img src="~/images/menu_08.png" /> </a></div>
+            <div class="menu_9"><a href="/PositionPower/PositionPower" target="_blank"><img src="~/images/menu_09.png" /> </a></div>
+        </div>
+
+        <div class="gkgs">
+            <div><img src="~/images/title_01.png" width="420" height="22" /></div>
+            <div class="gkgs_title"><a href="/Home/PublicityCatalog?type=1" target="_blank">党务公开</a></div>
+            <div class="gkgs_list">
+                <ul>
+                    @{
+                        int dangwuIndex = 1;
+                        for (var i = 0; i < ViewBag.DangWuPublicity.Count; i++)
+                        {
+                            <li><a href="/Home/PublicityInfo?id=@ViewBag.DangWuPublicity[i].RecordId" target="_blank">@dangwuIndex @ViewBag.DangWuPublicity[i].PublicTitle</a></li>
+                            dangwuIndex++;
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="gkgs_title"><a href="/Home/PublicityCatalog?type=0" target="_blank">院务公开</a></div>
+            <div class="gkgs_list">
+                <ol>
+                    @{
+                        int yuanwuIndex = 1;
+                        for (var i = 0; i < ViewBag.YuanWuPublicity.Count; i++)
+                        {
+                            <li><a href="/Home/PublicityInfo?id=@ViewBag.YuanWuPublicity[i].RecordId" target="_blank">@yuanwuIndex @ViewBag.YuanWuPublicity[i].PublicTitle</a></li>
+                            yuanwuIndex++;
+                        }
+                    }
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h2>流程业务监督</h2>*@
+<div class=" box_2">
+    <div class="center">
+        <div class="title_bg" style="margin-top:10px;"><span class="title_bg_l"><img src="~/images/title_02.png" /></span></div>
+        <div class="row">
+            <div id="hollowPie1" class="col-lg-3"></div>
+            <div id="hollowPie2" class="col-lg-3"></div>
+            <div id="hollowPie3" class="col-lg-3"></div>
+            <div id="hollowPie4" class="col-lg-3"></div>
+        </div>
+    </div>
+</div>
+
+@*<h2>供应商诚信</h2>*@
+<div class="container">
+    <div class="title_bg">
+        <span class="title_bg_l"><img src="~/images/title_03.png" width="118" height="23" /></span>
+        供应商总数：<span class="red">@ViewBag.SupplierInfo.SupplierTotal </span>本月新增：<span class="red">@ViewBag.SupplierInfo.CurrentMonthCreate</span> 黑名单：<span class="red">@ViewBag.SupplierInfo.SupplierBlackTotal</span> 本月新增：<span class="red">@ViewBag.SupplierInfo.SupplierBlackCreate</span>
+    </div>
+    <div class="row">
+        <div id="line" class="col-md-6"></div>
+        <div id="spider" class="col-md-6"></div>
+    </div>
+</div>
+
+@*<h2>行风管理</h2>*@
+<div class=" box_2" id="hangfeng">
+    <div class="center">
+        <div class="title_bg"><span class="title_bg_l"><img src="~/images/title_04.png" /></span></div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="row">
+                    <div id="fangtongfang" class="col-lg-12"></div>
+                    <div class="col-lg-12" style="text-align:center; font-size:18px; line-height:36px;">防统方</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div id="jushouhongbao" class="col-lg-12"></div>
+                    <div class="col-lg-12" style="text-align:center; font-size:18px; line-height:36px;">拒收红包</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="row">
+                    <div id="rongyu" class="col-lg-12"></div>
+                    <div class="col-lg-12" style="text-align:center; font-size:18px; line-height:36px;">荣誉</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<h2>满意度</h2>*@
+<div class="container">
+    <div class="title_bg"><span class="title_bg_l"><img src="~/images/title_05.png" /></span></div>
+    <div class="row">
+        <div class="col-md-3" style=" margin-top:50px;">
+            <div class="row">
+                <div id="archSatisfaction" class="col-lg-12" style="width: 300px; height: 200px;"></div>
+                <div class="col-lg-12 text-center" style="text-align:center; font-size:18px; line-height:36px;">门诊满意度</div>
+            </div>
+        </div>
+        <div id="lineBar" class="col-md-9" style="min-width:400px;height:400px"></div>
+    </div>
+
+    <div class="div_x"></div>
+    <div class="row">
+        <div class="col-md-3" style="margin-top:50px;">
+            <div class="row">
+                <div id="archHospital" class="col-lg-12" style="width: 300px; height: 200px;"></div>
+                <div class="col-lg-12 text-center" style="text-align:center; font-size:18px; line-height:36px;">住院满意度</div>
+            </div>
+        </div>
+        <div id="lineBarHospital" class="col-md-9" style="min-width:400px;height:400px"></div>
+    </div>
+
+</div>
+
+
+@*<h2>管理制度</h2>*@
+<div class=" box_2">
+    <div class="center">
+        <div class="title_bg"><span class="title_bg_l"><img src="~/images/title_06.png" /></span></div>
+        <div class="zd_c">
+            <div class="zd_title">
+                职权目录
+            </div><ul class="color1">
+                @if (ViewBag.InstitutionCriterion != null && ViewBag.InstitutionCriterion.Count > 0)
+                {
+                    foreach (var Institution in ViewBag.InstitutionCriterion)
+                    {
+                        <li><a href="/Institution/AuthorityDirectory?classifyCode=@Institution.ClassifyCode" target="_blank">@Institution.ClassifyName</a></li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="zd_r">
+            <div class="zd_title">最新发布</div>
+            <ul class="color1">
+                @{int index = 1;
+                    foreach (var item in ViewBag.TheLatestFiveInstitutionData)
+                    {
+
+                        <li><a href="/Institution/InstitutionInfo?recordId=@item.RecordId" target="_blank">@index @item.InstitutionName @item.PublishDept @item.UpdateDate.ToString("yyyy-MM-dd")</a></li>
+                        index++;
+                    }
+                }
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+@*引入highcharts相关的js文件*@
+@Scripts.Render("~/bundles/highcharts")
+
+<script type="text/javascript">
+
+    @*<h2>流程业务监督</h2> *@
+        var chartNk = Highcharts.chart('hollowPie1', {
+            chart: {
+                spacing: [40, 0, 40, 0],
+                backgroundColor: '#f8f8f8'
+            },
+            title: {
+                floating: true,
+                style: { color: '#E53333' },
+                text: '<p class="list_jd_text_1">' + @ViewBag.FlowProject[0].FlowCount+'%</p><br/>职务'
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: { enabled: false },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                innerSize: '80%',
+                backgroundColor: 'red',
+                name: '市场份额',
+                colors: ['#E53333', '#D5D5D5'],
+
+                data: [
+                    { name: 'Firefox', y: @ViewBag.FlowProject[0].FlowCount },
+                    ['IE', 100 - @ViewBag.FlowProject[0].FlowCount]
+                ]
+
+            }]
+
+        }, function (c) { // 图表初始化完毕后的会掉函数
+            // 环形图圆心
+            var centerY = c.series[0].center[1],
+                titleHeight = parseInt(c.title.styles.fontSize);
+            // 动态设置标题位置
+            c.setTitle({
+                y: centerY + titleHeight / 2
+            });
+        });
+
+        var chartHf = Highcharts.chart('hollowPie2', {
+            chart: {
+                spacing: [40, 0, 40, 0],
+                backgroundColor: '#f8f8f8'
+            },
+            title: {
+                floating: true,
+                style: { color: '#f18e00' },
+                text: '<p class="list_jd_text_2">' +@ViewBag.FlowProject[1].FlowCount+'%</p><br/>执业'
+            },
+            credits: { enabled: false },
+            tooltip: {
+                enabled: false
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                innerSize: '80%',
+                name: '市场份额',
+                colors: ['#f18e00', '#D5D5D5'],
+                data: [
+                    { name: 'Firefox', y: @ViewBag.FlowProject[1].FlowCount },
+                    ['IE', 100 -@ViewBag.FlowProject[1].FlowCount]
+                ]
+
+            }]
+        }, function (c) { // 图表初始化完毕后的会掉函数
+            // 环形图圆心
+            var centerY = c.series[0].center[1],
+                titleHeight = parseInt(c.title.styles.fontSize);
+            // 动态设置标题位置
+            c.setTitle({
+                y: centerY + titleHeight / 2
+            });
+        });
+
+        var chartZy = Highcharts.chart('hollowPie3', {
+            chart: {
+                spacing: [40, 0, 40, 0],
+                backgroundColor: '#f8f8f8'
+            },
+            title: {
+                floating: true,
+                style: { color: '#29aae4' },
+                text: '<p class="list_jd_text_3">' +@ViewBag.FlowProject[2].FlowCount+'%</p><br/>行风'
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: { enabled: false },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                innerSize: '80%',
+                name: '市场份额',
+                colors: ['#29aae4', '#D5D5D5'],
+                data: [
+               @ViewBag.FlowProject[2].FlowCount ,
+                    100 - @ViewBag.FlowProject[2].FlowCount
+            ]
+
+            }]
+        }, function (c) { // 图表初始化完毕后的会掉函数
+            // 环形图圆心
+            var centerY = c.series[0].center[1],
+                titleHeight = parseInt(c.title.styles.fontSize);
+            // 动态设置标题位置
+            c.setTitle({
+                y: centerY + titleHeight / 2
+            });
+        });
+
+        var chartZw = Highcharts.chart('hollowPie4', {
+            chart: {
+                spacing: [40, 0, 40, 0],
+                backgroundColor: '#f8f8f8'
+            },
+            title: {
+                floating: true,
+                style: { color: '#1cbaa6' },
+                text: '<p class="list_jd_text_4">' +@ViewBag.FlowProject[3].FlowCount+'%</p><br/>内控'
+            },
+            tooltip: {
+                enabled: false
+            },
+            credits: { enabled: false },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                innerSize: '80%',
+                name: '市场份额',
+                colors: ['#1cbaa6', '#D5D5D5'],
+                data: [
+              @ViewBag.FlowProject[3].FlowCount,
+                    100 - @ViewBag.FlowProject[3].FlowCount
+            ]
+
+            }]
+        }, function (c) { // 图表初始化完毕后的会掉函数
+            // 环形图圆心
+            var centerY = c.series[0].center[1],
+                titleHeight = parseInt(c.title.styles.fontSize);
+            // 动态设置标题位置
+            c.setTitle({
+                y: centerY + titleHeight / 2
+            });
+        });
+
+
+    //供应商诚信（线图）
+    var line = Highcharts.chart('line', {
+        chart: {
+            type: 'spline'
+        },
+        title: {
+            text: ''
+        },
+        credits: { enabled: false },
+        xAxis: {
+            categories:@Html.Raw(Model[0].XAxis.CategoriesJson)
+        },
+        yAxis: {
+            title: {
+                text: '@Model[0].XAxis.Title'
+                //text: '次数'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value;
+                }
+            }
+        },
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    radius: 4,
+                    lineColor: '#666666',
+                    lineWidth: 1
+                }
+            }
+        },
+
+        series:[@Html.Raw(Model[0].SeriesJson)]
+
+    });
+
+
+    //供应商诚信调查(蜘蛛图)
+        var spider = Highcharts.chart('spider', {
+            plotOptions: {
+                line: { showInLegend: false }
+            },
+            chart: {
+                polar: true,
+                type: 'line'
+            },
+            credits: { enabled: false },
+            title: {
+                text: '供应商诚信调查',
+                //x: -80
+            },
+            pane: {
+                size: '99%'
+            },
+            xAxis: {
+                categories: [
+                    @foreach (var item in ViewBag.SupplierValuate) {
+                        @Html.Raw("'")
+                        @item.AppraiseProjectName
+                        @Html.Raw("',")
+                    }
+                ],
+                //categories: ['调查项目A', '调查项目B', '调查项目C', '调查项目D','调查项目E'],
+
+
+                tickmarkPlacement: 'on',
+                lineWidth: 0
+            },
+            yAxis: {
+                gridLineInterpolation: 'polygon',
+                lineWidth: 0,
+                min: 0
+            },
+            tooltip: {
+                shared: true,
+                pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.2f}</b><br/>'
+            },
+            legend: {
+                align: 'right',
+                verticalAlign: 'top',
+                y: 70,
+                layout: 'vertical'
+            },
+            series: [{
+                name: ' ',
+                data: [
+                    @foreach (var item in ViewBag.SupplierValuate) {
+                        @item.Score
+                        @Html.Raw(",")
+                    }
+                ],
+                pointPlacement: 'on'
+            }]
+    });
+
+    //荣誉
+    var rongyuColor = @{
+            if (ViewBag.TitleHonor.MonthCount <= ViewBag.TitleHonor.Count * 0.2)
+            { @Html.Raw("'#8DC2A9'");}
+            else if (ViewBag.TitleHonor.MonthCount <= ViewBag.TitleHonor.Count * 0.8)
+            {
+                @Html.Raw("'#608299'");
+            }
+            else { @Html.Raw("'#BE3431'");}
+    };
+    var rongyu = Highcharts.chart('rongyu', {
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false,
+            backgroundColor: '#f8f8f8'
+        },
+        title: {
+            text: ''
+        },
+        credits: { enabled: false },
+        plotOptions: {
+            gauge: {
+                dataLabels: {
+                    enabled: true,
+                    borderWidth: 0,
+                    y: 100
+                },
+                dial: {
+                    radius: '75%',
+                    backgroundColor: rongyuColor,
+                    //borderColor: '#FF8247',
+                    borderWidth: 1,
+                    baseWidth: 15,
+                    topWidth: 1,
+                    rearLength: '10%'
+                }
+            }
+        },
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
+        pane: {
+            startAngle: -135,
+            endAngle: 135,
+            background: null,//面板背景
+        },
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: @ViewBag.TitleHonor.Count,
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#ABBAC5',
+            tickPixelInterval: 50,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 37,
+            tickColor: '#ABBAC5',
+            labels: {
+                step: 2,
+                rotation: 'auto',
+                distance: -55,
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 900
+                }
+            },
+            title: {
+                text: ' ',
+                style: { "fontSize": "18px" }
+            },
+            plotBands: [{
+                from: 0,
+                to: @ViewBag.TitleHonor.Count*0.2,
+                color: '#8DC2A9', // green
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }, {
+                from: @ViewBag.TitleHonor.Count*0.2,
+                to: @ViewBag.TitleHonor.Count*0.8,
+                color: '#608299', // yellow
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }, {
+                from: @ViewBag.TitleHonor.Count*0.8,
+                to: @ViewBag.TitleHonor.Count,
+                color: '#BE3431', // red
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }]
+        },
+        series: [{
+            name: '荣誉',
+            data: [@ViewBag.TitleHonor.MonthCount],
+            //cursor:'pointer',
+            wrap: false,
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                rongyuColor + '">{y}次</span></div>'
+            },
+            tooltip: {
+                valueSuffix: '次'
+            }
+        }]
+    });
+
+
+    //门诊满意度线图和矩形图
+    var chartLineBar = Highcharts.chart('lineBar', {
+        legend: { enabled: false },
+        //chart: {
+        //    zoomType: 'xy'
+        //},
+        title: {
+            text: ''
+        },
+        plotOptions: {
+            series: {
+                maxPointWidth:100
+            }
+        },
+        credits: { enabled: false },
+        xAxis: [{
+            categories:@Html.Raw(ViewBag.OutpatientSatisfaction.XAxis.CategoriesJson),
+            crosshair: true,
+            labels: {
+                rotation: -45  // 设置轴标签旋转角度
+            }
+        }],
+        yAxis: [{ // Primary yAxis
+            labels: {
+                format: '{value}次',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            title: {
+                text: '',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        }, { // Secondary yAxis
+            title: {
+                text: '',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+                },
+            ceiling:100,
+            labels: {
+                format: '{value} %',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            opposite: true
+        }],
+        tooltip: {
+            shared: true
+        },
+        series:@Html.Raw(ViewBag.OutpatientSatisfaction.SeriesJson)
+
+    });
+
+    //住院满意度
+    var chartLineBarHospital = Highcharts.chart('lineBarHospital', {
+        legend: { enabled: false },
+        //chart: {
+        //    zoomType: 'xy'
+        //},
+        title: {
+            text: ''
+        },
+        plotOptions: {
+            series: {
+                maxPointWidth: 100
+            }
+        },
+        credits: { enabled: false },
+        xAxis: [{
+            categories:@Html.Raw(ViewBag.HospitalSatisfaction.XAxis.CategoriesJson),
+            crosshair: true,
+            labels: {
+                rotation: -45  // 设置轴标签旋转角度
+            }
+        }],
+        yAxis: [{ // Primary yAxis
+            labels: {
+                format: '{value}次',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            title: {
+                text: '',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        }, { // Secondary yAxis
+            title: {
+                text: '',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+                },
+            ceiling: 100,
+            labels: {
+                format: '{value} %',
+                style: {
+                    color: Highcharts.getOptions().colors[0]
+                }
+            },
+            opposite: true
+        }],
+        tooltip: {
+            shared: true
+        },
+
+        series:@Html.Raw(ViewBag.HospitalSatisfaction.SeriesJson)
+
+    });
+    //传统方
+    var fangtongfangColor = @{if (ViewBag.DataStatistics.MonthCount <= ViewBag.DataStatistics.Count * 0.2)
+                        { @Html.Raw("'#8DC2A9'");
+                        }
+                        else if (ViewBag.DataStatistics.MonthCount <= ViewBag.DataStatistics.Count * 0.8)
+                        {
+                            @Html.Raw("'#608299'");
+                        }
+                        else { @Html.Raw("'#BE3431'");}};
+    var fangtongfang = Highcharts.chart('fangtongfang', {
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth:null,
+            plotShadow: false,
+            shadow: false,
+            backgroundColor: '#f8f8f8',
+            borderWidth: 0//边框宽度
+        },
+        title: {
+            text: ''
+        },
+        credits: { enabled: false },
+        pane: {
+            startAngle: -135,
+            endAngle: 135,
+            background: null,//面板背景
+            //background: [{
+            //    backgroundColor: {
+            //        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+            //        stops: [
+            //            [0, '#FFF'],
+            //            [1, '#333']
+            //        ]
+            //    },
+            //    borderWidth: 0,
+            //    outerRadius: '109%'
+            //}, {
+            //    backgroundColor: {
+            //        linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+            //        stops: [
+            //            [0, '#333'],
+            //            [1, '#FFF']
+            //        ]
+            //    },
+            //    borderWidth: 1,
+            //    outerRadius: '107%'
+            //}, {
+            //    // default background
+            //}, {
+            //    backgroundColor: '#DDD',
+            //    borderWidth: 0,
+            //    outerRadius: '105%',
+            //    innerRadius: '103%'
+            //}]
+        },
+        plotOptions: {
+            gauge: {
+                dataLabels: {
+                    enabled: true,
+                    borderWidth: 0,
+                    y: 100
+                },
+                dial: {
+                    radius: '75%',
+                    backgroundColor:fangtongfangColor,
+                    borderWidth: 1,
+                    baseWidth: 15,
+                    topWidth: 1,
+                    rearLength: '10%'
+                }
+            }
+        },
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: @ViewBag.DataStatistics.Count,
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#ABBAC5',
+            tickPixelInterval: 50,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 37,
+            tickColor: '#ABBAC5',
+            labels: {
+                step: 2,
+                rotation: 'auto',
+                distance: -55,
+                style: {
+                    fontSize: '16px',
+                    fontWeight:900
+                }
+            },
+            title: {
+                text: ' ',
+                style: { "fontSize": "18px" }
+            },
+            plotBands: [{
+                from: 0,
+                to: @ViewBag.DataStatistics.Count * 0.2,
+                color: '#8DC2A9', // 55BF3B
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }, {
+                from: @ViewBag.DataStatistics.Count * 0.2,
+                to: @ViewBag.DataStatistics.Count * 0.8,
+                color: '#608299', // DDDF0D
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }, {
+                from: @ViewBag.DataStatistics.Count * 0.8,
+                to: @ViewBag.DataStatistics.Count,
+                color: '#BE3431', // DF5353
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }]
+        },
+
+        series: [{
+            name: '防统方',
+            color:'red',
+            data: [@ViewBag.DataStatistics.MonthCount],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                fangtongfangColor  + '">{y}次</span></div>'
+            },
+            tooltip: {
+                valueSuffix: ' 次'
+            }
+        }]
+    });
+
+    //拒收红包
+    var jushouhongbaoColor = @{if (ViewBag.RejectionBribe.MonthCount <= ViewBag.RejectionBribe.Count * 0.2)
+                        { @Html.Raw("'#8DC2A9'");
+                        }
+                        else if (ViewBag.RejectionBribe.MonthCount <= ViewBag.RejectionBribe.Count * 0.8)
+                        {
+                            @Html.Raw("'#608299'");
+                        }
+                        else { @Html.Raw("'#BE3431'");}};
+
+
+
+    var jushouhongbao = Highcharts.chart('jushouhongbao', {
+        chart: {
+            type: 'gauge',
+            plotBackgroundColor: null,
+            plotBackgroundImage: null,
+            plotBorderWidth: 0,
+            plotShadow: false,
+            backgroundColor: '#f8f8f8'
+        },
+        title: {
+            text: ''
+        },
+        credits: { enabled: false },
+        plotOptions: {
+            gauge: {
+                dataLabels: {
+                    enabled: true,
+                    borderWidth: 0,
+                    y: 100
+                },
+                dial: {
+                    radius: '75%',
+                    backgroundColor: jushouhongbaoColor,
+                    //borderColor: '#FF8247',
+                    borderWidth: 1,
+                    baseWidth: 15,
+                    topWidth: 1,
+                    rearLength: '10%'
+                }
+            }
+        },
+        pane: {
+            startAngle: -150,
+            endAngle: 150,
+            background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#FFF'],
+                        [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+            }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                        [0, '#333'],
+                        [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+            }, {
+                // default background
+            }, {
+                backgroundColor: '#DDD',
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+            }]
+        },
+        pane: {
+            startAngle: -135,
+            endAngle: 135,
+            background: null,//面板背景
+        },
+        // the value axis
+        yAxis: {
+            min: 0,
+            max: @ViewBag.RejectionBribe.Count,
+            minorTickInterval: 'auto',
+            minorTickWidth: 1,
+            minorTickLength: 10,
+            minorTickPosition: 'inside',
+            minorTickColor: '#ABBAC5',
+            tickPixelInterval: 50,
+            tickWidth: 2,
+            tickPosition: 'inside',
+            tickLength: 37,
+            tickColor: '#ABBAC5',
+            labels: {
+                step: 2,
+                rotation: 'auto',
+                distance: -55,
+                style: {
+                    fontSize: '16px',
+                    fontWeight: 900
+                }
+            },
+            title: {
+                text: ' ',
+                style: { "fontSize": "18px" }
+            },
+            plotBands: [{
+                from: 0,
+                to: @ViewBag.RejectionBribe.Count * 0.2,
+                color: '#8DC2A9', // green
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }, {
+                from: @ViewBag.RejectionBribe.Count * 0.2,
+                to: @ViewBag.RejectionBribe.Count * 0.8,
+                color: '#608299', // yellow
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }, {
+                from: @ViewBag.RejectionBribe.Count * 0.8,
+                to: @ViewBag.RejectionBribe.Count,
+                color: '#BE3431', // red
+                innerRadius: '100%',
+                outerRadius: '75%'
+            }]
+        },
+        series: [{
+            name: '拒收红包',
+            data: [@ViewBag.RejectionBribe.MonthCount],
+            //cursor:'pointer',
+            wrap: false,
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                jushouhongbaoColor  + '">{y}次</span></div>'
+            },
+            tooltip: {
+                valueSuffix: '次'
+            }
+        }]
+    });
+
+    // 公共配置
+    Highcharts.setOptions({
+        chart: {
+            type: 'solidgauge'
+        },
+        title: null,
+        credits: { enabled: false },
+        pane: {
+            center: ['50%', '85%'],
+            size: '140%',
+            startAngle: -90,
+            endAngle: 90,
+            background: {
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                innerRadius: '60%',
+                outerRadius: '100%',
+                shape: 'arc'
+            }
+        },
+        tooltip: {
+            enabled: false
+        },
+        yAxis: {
+            stops: [
+                [0.1, '#55BF3B'], // green
+                [0.5, '#DDDF0D'], // yellow
+                [0.9, '#DF5353'] // red
+            ],
+            lineWidth: 0,
+            minorTickInterval: null,
+            tickPixelInterval: 400,
+            tickWidth: 0,
+            title: {
+                y: -70
+            },
+            labels: {
+                y: 16
+            }
+        },
+        plotOptions: {
+            solidgauge: {
+                dataLabels: {
+                    y: 5,
+                    borderWidth: 0,
+                    useHTML: true
+                }
+            },
+            gauge: {
+                dataLabels: {
+                    enabled: true,
+                    y: -50
+                },
+                dial: {//仪表盘指针
+                    radius: '80%',
+                    rearLength: '0%',
+                    backgroundColor: 'silver',
+                    borderColor: 'silver',
+                    borderWidth: 10,
+                    baseWidth: 20,
+                    topWidth: 1,
+                }
+            }
+        }
+    });
+
+    // 门诊满意度
+    var chart3 = Highcharts.chart('archSatisfaction', {
+        yAxis: {
+            min: 0,
+            max: 100,
+            title: {
+                text: ''
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: '速度',
+            //data: [89],
+            data: [@ViewBag.MenzhenPercent],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}%</span></div>'
+            },
+            tooltip: {
+                valueSuffix: '%'
+            }
+        }]
+    });
+
+    // 住院满意度
+    var chart4 = Highcharts.chart('archHospital', {
+        yAxis: {
+            min: 0,
+            max: 100,
+            title: {
+                text: ''
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: '速度',
+            data: [@ViewBag.ZhuyuanPercent],
+            //data: [80],
+            dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}%</span></div>'
+            },
+            tooltip: {
+                valueSuffix: '%'
+            }
+        }]
+    });
+
+    // 定时刷新数据
+    //setInterval(function () {
+    //    var point,
+    //        newVal,
+    //        inc;
+    //    if (chart1) {
+    //        point = chart1.series[0].points[0];
+    //        inc = Math.round((Math.random() - 0.5) * 100);
+    //        newVal = point.y + inc;
+    //        if (newVal < 0 || newVal > 100) {
+    //            newVal = point.y - inc;
+    //        }
+    //        point.update(newVal);
+    //    }
+    //    if (chart2) {
+    //        point = chart2.series[0].points[0];
+    //        inc = Math.round((Math.random() - 0.5) * 100);
+    //        newVal = point.y + inc;
+    //        if (newVal < 0 || newVal > 100) {
+    //            newVal = point.y - inc;
+    //        }
+    //        point.update(newVal);
+    //    }
+
+    //    if (chart3) {
+    //        point = chart3.series[0].points[0];
+    //        inc = Math.round((Math.random() - 0.5) * 100);
+    //        newVal = point.y + inc;
+    //        if (newVal < 0 || newVal > 100) {
+    //            newVal = point.y - inc;
+    //        }
+    //        point.update(newVal);
+    //    }
+    //}, 2000);
+
+
+</script>
+
